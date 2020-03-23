@@ -1,0 +1,23 @@
+<div>
+    <div>
+        <div class="centered-container">
+            Saved Giphys
+        </div>
+        <div>
+            <div class="category-list-header">
+                Filter Category List
+            </div>
+            <div class="category-list-header">
+                <mat-chip-list aria-label="Category selection">
+                    <mat-chip *ngFor="let category of categories" (click)="filterSavedList(category)">{{category}}</mat-chip>
+                </mat-chip-list>   
+            </div>
+
+        </div>
+        <app-giphys-list 
+        [savedView]="true" 
+        [giphyList]="filteredGiphys"
+        (removeGiphyList)="removeGiphy($event)"
+        (updateGiphyList)="updateGiphy($event)"></app-giphys-list>
+    </div>
+</div>

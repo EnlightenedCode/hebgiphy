@@ -1,0 +1,11 @@
+<div class="list-spacing">
+    <div class="gifs-output">
+        <app-giphys-card 
+        [giphy]="giphy"
+        [savedView]="savedView" 
+        *ngFor="let giphy of giphyList" 
+        (removeGiphy)="removeGiphy($event)"
+        (updateGiphy)="updateGiphy($event)"
+        (saveGiphy)="saveGiphy($event)"></app-giphys-card>
+    </div>
+</div>

@@ -1,0 +1,38 @@
+<div class="gif-container">
+    <mat-card class="card-spacing">
+        <mat-card-header>
+            <mat-card-title>{{giphy.title}}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+        <a [href]="giphy.url" target="_blank">
+            <img 
+            width="300"
+            height="225"
+            class="giphy-gif-img" 
+            [src]="giphy.url" >
+        </a>
+        <div *ngIf="savedView">
+            <mat-form-field class="form-field-width">
+                <mat-chip-list #chipList aria-label="Category selection">
+                  <mat-chip *ngFor="let category of giphy.categories" [selectable]="selectable"
+                           [removable]="removable" (removed)="removeCategory(category)">
+                    {{category}}
+                    <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                  </mat-chip>
+                  <input placeholder="category"
+                         [matChipInputFor]="chipList"
+                         [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                         [matChipInputAddOnBlur]="addOnBlur"
+                         (matChipInputTokenEnd)="addCategory($event)">
+                </mat-chip-list>
+              </mat-form-field>
+        </div>
+
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-button (click)="saveGiphy(giphy)" *ngIf="!giphy.saved && !savedView">SAVE</button>
+            <button mat-button disabled (click)="saveGiphy(giphy)" *ngIf="giphy.saved && !savedView">SAVED</button> 
+            <button mat-button (click)="removeGiphy(giphy)" *ngIf="giphy.saved && savedView">REMOVE</button>
+        </mat-card-actions>
+    </mat-card>
+</div>

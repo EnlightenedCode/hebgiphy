@@ -1,0 +1,34 @@
+<div>
+    <div>
+        <div class="centered-container">
+            Search your favorite Gifs
+        </div>
+        <div class="centered-container">
+            <form [formGroup]="form" (keyup.enter)="onSubmit()">
+                <div>
+                    <mat-form-field>
+                        <input    
+                            matInput
+                            type="search"
+                            formControlName="search"
+                            placeholder="Giphy Search"
+                            autocomplete="off"/>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field>
+                        <input
+                            matInput
+                            type="text"
+                            formControlName="limit"
+                            placeholder="Page Limit"
+                            autocomplete="off"/>
+                    </mat-form-field>
+                </div>
+            </form>
+        </div>
+        <app-giphys-list [giphyList]="searchedGiphys" (saveGiphyList)="saveGiphy($event)"></app-giphys-list>
+
+    </div>
+</div>
+
